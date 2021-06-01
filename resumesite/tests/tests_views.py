@@ -4,10 +4,10 @@ from django.contrib.auth import get_user_model
 import pytest
 
 
-@pytest.mark.parametrize('param',['home'])
-def test_render_views(client,param):
-    temp_url = reverse(param)
-    resp = client.get(temp_url)
+@pytest.mark.parametrize('param', ['home'])  # testing if the get response of the site works
+def test_render_views(client, param):
+    temp_url = reverse(param)  # reverse gets URL by matching the 'name' param provided (specified in views.py)
+    resp = client.get(temp_url)  # iniciating a get request
     assert resp.status_code == 200
 
 

@@ -7,14 +7,14 @@ from resumesite.models import Contact
 #     return render(request, 'index.html', {})
 
 
-def home(request):
+def home(request):  # method catching post request if email was sent
     if request.method == 'POST':
         message_name = request.POST['message-name']
         message_email = request.POST['message-email']
         message = request.POST['message']
 
         ins = Contact(name=message_name, email=message_email, message=message)
-        ins.save()
+        ins.save()  # creating an email instance for django admin database
 
         # send an email
         send_mail(
@@ -26,7 +26,7 @@ def home(request):
         return render(request, 'index.html', {'message_name': message_name})
 
     else:
-        return render(request, 'index.html', {})
+        return render(request, 'index.html', {})  # if there's no post request, display the page
 
 
 
